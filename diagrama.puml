@@ -1,0 +1,61 @@
+@startuml GameStructureDiagram
+
+class Dinosaurio {
+    - posicion: Vector2f
+    - textura: Texture
+    - saltando: bool
+    - velocidadSalto: float
+    - gravedad: float
+    + saltar(): void
+    + agacharse(): void
+    + actualizar(): void
+}
+
+class Suelo {
+    - textura: Texture
+    - velocidad: float
+    + mover(): void
+    + actualizar(): void
+}
+
+class Cielo {
+    - textura: Texture
+    - velocidad: float
+    + moverCielo(): void
+    + actualizar(): void
+}
+
+class Obstaculo {
+    - posicion: Vector2f
+    - textura: Texture
+    - velocidad: float
+    + mover(): void
+    + actualizar(): void
+}
+
+class Enemigo {
+    - posicion: Vector2f
+    - textura: Texture
+    - velocidad: float
+    + mover(): void
+    + actualizar(): void
+}
+
+class Sonido {
+    - musicaFondo: Music
+    - efectoSalto: SoundBuffer
+    - efectoMuerte: SoundBuffer
+    + reproducirMusicaFondo(): void
+    + reproducirEfectoSalto(): void
+    + reproducirEfectoMuerte(): void
+}
+
+
+Dinosaurio "1" o-- "*" Obstaculo
+Dinosaurio "1" o-- "1" Enemigo
+Dinosaurio "1" *-- "1" Cielo
+Dinosaurio "1" *-- "1" Suelo
+Dinosaurio "1" o-- "3" Sonido
+
+
+@enduml
